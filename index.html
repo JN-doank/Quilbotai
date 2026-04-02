@@ -3,55 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>MweheheBot AI</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>Mwehehebot AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Glass Morphism Overlay -->
+    <div class="glass-overlay"></div>
 
-        body {
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1128 100%);
-            min-height: 100vh;
-            color: #fff;
-            overflow-x: hidden;
-        }
+    <div class="container">
+        <!-- Futuristic Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="neon-circle">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h1 class="glitch-text" data-text="QuillBot AI">QuillBot AI</h1>
+                <div class="badge">
+                    <span class="pulse"></span>
+                    Neural Engine v4.0
+                </div>
+            </div>
+            <p class="subtitle">Bot- AI Cerdas Masa Depan </p>
+        </header>
 
-        /* Animated Background */
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <div class="input-section glass-card">
+                <div class="section-header">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Input Teks Original</h3>
+                    <span class="word-counter" id="wordCounter">0 kata</span>
+                </div>
+                <textarea 
+                    id="inputText" 
+                    placeholder="Tulis atau tempel teks Anda di sini...&#10;&#10;Contoh: &quot;Teknologi kecerdasan buatan berkembang sangat pesat dalam beberapa tahun terakhir.&quot;"
+                    rows="6"
+                ></textarea>
+                
+                <!-- Style Selector Futuristic -->
+                <div class="style-selector">
+                    <label><i class="fas fa-sliders-h"></i> Mode Paraphrase:</label>
+                    <div class="style-buttons">
+                        <button class="style-btn active" data-style="standard">
+                            <i class="fas fa-balance-scale"></i> Standard
+                        </button>
+                        <button class="style-btn" data-style="formal">
+                            <i class="fas fa-graduation-cap"></i> Formal
+                        </button>
+                        <button class="style-btn" data-style="creative">
+                            <i class="fas fa-lightbulb"></i> Creative
+                        </button>
+                        <button class="style-btn" data-style="fluency">
+                            <i class="fas fa-tachometer-alt"></i> Fluency
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="process-btn" id="processBtn">
+                    <span class="btn-text">Generate Paraphrase</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
 
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
+            <!-- Loading State -->
+            <div class="loading-container" id="loadingContainer">
+                <div class="neural-loader">
+                    <div class="loader-circle"></div>
+                    <div class="loader-circle"></div>
+                    <div class="loader-circle"></div>
+                    <div class="loader-text">Memproses dengan Neural Network...</div>
+                </div>
+            </div>
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
+            <!-- Output Section -->
+            <div class="output-section glass-card" id="outputSection" style="display: none;">
+                <div class="section-header">
+                    <i class="fas fa-magic"></i>
+                    <h3>Hasil  AI</h3>
+                    <div class="output-actions">
+                        <button class="action-icon" id="copyBtn" title="Copy">
+                            <i class="far fa-copy"></i>
+                        </button>
+                        <button class="action-icon" id="shareBtn" title="Share">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-icon" id="speakBtn" title="Text to Speech">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="output-content" id="outputContent">
+                    <div class="original-text">
+                        <span class="label">Original:</span>
+                        <p id="originalText"></p>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="paraphrased-text">
+                        <span class="label">Paraphrased:</span>
+                        <p id="paraphrasedText"></p>
+                    </div>
+                </div>
+                
+                <!-- Stats Futuristic -->
+                <div class="stats-container" id="statsContainer">
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <span class="stat-label">Processing Time</span>
+                            <span class="stat-value" id="processTime">-</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <span class="stat-label">Confidence Score</span>
+                            <span class="stat-value" id="confidenceScore">-</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-code-branch"></i>
+                        <div>
+                            <span class="stat-label">Engine Version</span>
+                            <span class="stat-value" id="engineVersion">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-        /* Main Container */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span>© 2026 MWEHEHE AI Neural</span>
+                <span class="dot">•</span>
+                <span>Powered by JansenXcode</span>
+                <span class="dot">•</span>
+                <span><i class="fas fa-shield-alt"></i> Encrypted</span>
+            </div>
+        </footer>
+    </div>
 
-        /* Header Futuristic */
-        .header {
-            text-align: center;
-            padding: 40px 20px;
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
