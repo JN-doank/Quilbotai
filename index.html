@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Mwehehebot AI</title>
+    <title>AI Auto Clipper | MweheheXcode</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -23,15 +23,15 @@
         <header class="header">
             <div class="logo-container">
                 <div class="neon-circle">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-scissors"></i>
                 </div>
-                <h1 class="glitch-text" data-text="QuillBot AI">paraphrase AI</h1>
+                <h1 class="glitch-text" data-text="AI Auto Clipper">AI Auto Clipper</h1>
                 <div class="badge">
                     <span class="pulse"></span>
-                    Neural Engine v4.0
+                    Neural Clipper v2.0
                 </div>
             </div>
-            <p class="subtitle">Bot- AI  </p>
+            <p class="subtitle">Potong & Ekstrak Momen Terbaik Secara Otomatis | by JansenXcode</p>
         </header>
 
         <!-- Main Content -->
@@ -39,38 +39,110 @@
             <!-- Input Section -->
             <div class="input-section glass-card">
                 <div class="section-header">
-                    <i class="fas fa-pen-fancy"></i>
-                    <h3>Input Teks Original</h3>
-                    <span class="word-counter" id="wordCounter">0 kata</span>
+                    <i class="fas fa-link"></i>
+                    <h3>Input Link Video/Media</h3>
+                    <span class="badge-api" id="apiStatus">● API Ready</span>
                 </div>
-                <textarea 
-                    id="inputText" 
-                    placeholder="Tulis atau tempel teks Anda di sini...&#10;&#10;Contoh: &quot;Teknologi kecerdasan buatan berkembang sangat pesat dalam beberapa tahun terakhir.&quot;"
-                    rows="6"
-                ></textarea>
                 
-                <!-- Style Selector Futuristic -->
-                <div class="style-selector">
-                    <label><i class="fas fa-sliders-h"></i> Mode Paraphrase:</label>
-                    <div class="style-buttons">
-                        <button class="style-btn active" data-style="standard">
-                            <i class="fas fa-balance-scale"></i> Standard
-                        </button>
-                        <button class="style-btn" data-style="formal">
-                            <i class="fas fa-graduation-cap"></i> Formal
-                        </button>
-                        <button class="style-btn" data-style="creative">
-                            <i class="fas fa-lightbulb"></i> Creative
-                        </button>
-                        <button class="style-btn" data-style="fluency">
-                            <i class="fas fa-tachometer-alt"></i> Fluency
-                        </button>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="videoUrl" 
+                        placeholder="Masukkan URL video (YouTube, TikTok, Instagram, Facebook, Twitter)..."
+                        class="futuristic-input"
+                    >
+                    <button class="paste-btn" id="pasteBtn">
+                        <i class="fas fa-paste"></i>
+                    </button>
+                </div>
+
+                <!-- Platform Suggestions -->
+                <div class="platform-suggestions">
+                    <span class="suggestion-label"><i class="fas fa-globe"></i> Support:</span>
+                    <div class="platform-icons">
+                        <i class="fab fa-youtube" title="YouTube"></i>
+                        <i class="fab fa-tiktok" title="TikTok"></i>
+                        <i class="fab fa-instagram" title="Instagram"></i>
+                        <i class="fab fa-facebook" title="Facebook"></i>
+                        <i class="fab fa-twitter" title="Twitter/X"></i>
                     </div>
                 </div>
-                
+
+                <!-- Clipping Options -->
+                <div class="clipping-options">
+                    <div class="option-group">
+                        <label><i class="fas fa-clock"></i> Durasi Clip (detik)</label>
+                        <div class="duration-selector">
+                            <button class="duration-btn" data-duration="15">15s</button>
+                            <button class="duration-btn active" data-duration="30">30s</button>
+                            <button class="duration-btn" data-duration="45">45s</button>
+                            <button class="duration-btn" data-duration="60">60s</button>
+                            <button class="duration-btn custom" data-duration="custom">
+                                <i class="fas fa-sliders-h"></i> Custom
+                            </button>
+                        </div>
+                        <div class="custom-duration" id="customDuration" style="display: none;">
+                            <input type="number" id="customDurationValue" placeholder="Durasi dalam detik" min="5" max="300">
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label><i class="fas fa-magic"></i> AI Detection Mode</label>
+                        <div class="ai-modes">
+                            <button class="ai-mode-btn active" data-mode="auto">
+                                <i class="fas fa-robot"></i> Auto (Best Moments)
+                            </button>
+                            <button class="ai-mode-btn" data-mode="highlight">
+                                <i class="fas fa-star"></i> Highlight Only
+                            </button>
+                            <button class="ai-mode-btn" data-mode="speech">
+                                <i class="fas fa-microphone"></i> Speech Detection
+                            </button>
+                            <button class="ai-mode-btn" data-mode="action">
+                                <i class="fas fa-running"></i> Action Scenes
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label><i class="fas fa-download"></i> Output Format</label>
+                        <div class="format-selector">
+                            <button class="format-btn active" data-format="mp4">
+                                <i class="fas fa-video"></i> MP4
+                            </button>
+                            <button class="format-btn" data-format="gif">
+                                <i class="fas fa-file-image"></i> GIF
+                            </button>
+                            <button class="format-btn" data-format="webm">
+                                <i class="fas fa-code"></i> WEBM
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Channel Button -->
+                <div class="whatsapp-section">
+                    <button class="whatsapp-btn" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Join WhatsApp Channel</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="whatsapp-popup" id="whatsappPopup" style="display: none;">
+                        <div class="popup-content">
+                            <i class="fab fa-whatsapp"></i>
+                            <h4>Channel WhatsApp MweheheXcode</h4>
+                            <p>Dapatkan update terbaru web/tools menarik lainnya!</p>
+                            <div class="popup-buttons">
+                                <button class="join-btn" id="confirmWhatsapp">Join Now</button>
+                                <button class="close-popup" id="closePopup">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <button class="process-btn" id="processBtn">
-                    <span class="btn-text">Generate Paraphrase</span>
-                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    <span class="btn-text">Clip Now</span>
+                    <span class="btn-icon"><i class="fas fa-cut"></i></span>
                     <div class="btn-glow"></div>
                 </button>
             </div>
@@ -81,62 +153,105 @@
                     <div class="loader-circle"></div>
                     <div class="loader-circle"></div>
                     <div class="loader-circle"></div>
-                    <div class="loader-text">Memproses dengan Neural Network...</div>
+                    <div class="loader-text">
+                        <span id="loadingStep">Menganalisis video...</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Output Section -->
             <div class="output-section glass-card" id="outputSection" style="display: none;">
                 <div class="section-header">
-                    <i class="fas fa-magic"></i>
-                    <h3>Hasil  AI</h3>
+                    <i class="fas fa-film"></i>
+                    <h3>nih Hasil Clipping nya sayang semoga suka ya☺</h3>
                     <div class="output-actions">
-                        <button class="action-icon" id="copyBtn" title="Copy">
-                            <i class="far fa-copy"></i>
+                        <button class="action-icon" id="downloadBtn" title="Download">
+                            <i class="fas fa-download"></i>
                         </button>
                         <button class="action-icon" id="shareBtn" title="Share">
                             <i class="fas fa-share-alt"></i>
                         </button>
-                        <button class="action-icon" id="speakBtn" title="Text to Speech">
-                            <i class="fas fa-volume-up"></i>
+                        <button class="action-icon" id="previewBtn" title="Preview">
+                            <i class="fas fa-play"></i>
                         </button>
                     </div>
                 </div>
                 
-                <div class="output-content" id="outputContent">
-                    <div class="original-text">
-                        <span class="label">Original:</span>
-                        <p id="originalText"></p>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="paraphrased-text">
-                        <span class="label">Paraphrased:</span>
-                        <p id="paraphrasedText"></p>
+                <!-- Video Preview -->
+                <div class="video-preview" id="videoPreview">
+                    <video id="clipVideo" controls style="width: 100%; border-radius: 16px;">
+                        <source id="videoSource" src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- Clip Info -->
+                <div class="clip-info">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span class="info-label">Duration</span>
+                                <span class="info-value" id="clipDuration">-</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <span class="info-label">AI Confidence</span>
+                                <span class="info-value" id="aiConfidence">-</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-database"></i>
+                            <div>
+                                <span class="info-label">File Size</span>
+                                <span class="info-value" id="fileSize">-</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <div>
+                                <span class="info-label">Processing Time</span>
+                                <span class="info-value" id="processTime">-</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Stats Futuristic -->
-                <div class="stats-container" id="statsContainer">
-                    <div class="stat-card">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <span class="stat-label">Processing Time</span>
-                            <span class="stat-value" id="processTime">-</span>
-                        </div>
+
+                <!-- Timeline Preview -->
+                <div class="timeline-preview">
+                    <div class="timeline-header">
+                        <i class="fas fa-chart-simple"></i>
+                        <span>AI Detection Timeline</span>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-chart-line"></i>
-                        <div>
-                            <span class="stat-label">Confidence Score</span>
-                            <span class="stat-value" id="confidenceScore">-</span>
-                        </div>
+                    <div class="timeline-bar" id="timelineBar">
+                        <div class="timeline-marker" id="timelineMarker"></div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-code-branch"></i>
-                        <div>
-                            <span class="stat-label">Engine Version</span>
-                            <span class="stat-value" id="engineVersion">-</span>
-                        </div>
+                    <div class="timeline-labels">
+                        <span>Start</span>
+                        <span>Best Moments</span>
+                        <span>End</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div class="history-section glass-card" id="historySection">
+                <div class="section-header">
+                    <i class="fas fa-history"></i>
+                    <h3>Recent Clips</h3>
+                    <button class="clear-history" id="clearHistoryBtn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="empty-history">
+                        <i class="fas fa-folder-open"></i>
+                        <p>Belum ada riwayat clipping</p>
                     </div>
                 </div>
             </div>
@@ -145,11 +260,13 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <span>© 2026 MWEHEHE AI Neural</span>
+                <span>© 2026 AI Auto Clipper</span>
                 <span class="dot">•</span>
                 <span>Powered by JansenXcode</span>
                 <span class="dot">•</span>
                 <span><i class="fas fa-shield-alt"></i> Encrypted</span>
+                <span class="dot">•</span>
+                <span><i class="fas fa-bolt"></i> Real-time AI Processing</span>
             </div>
         </footer>
     </div>
