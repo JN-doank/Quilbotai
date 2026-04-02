@@ -1,496 +1,277 @@
-/* ========== RESET & GLOBAL ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at 20% 50%, #0a0e27, #050814);
-    min-height: 100vh;
-    color: #fff;
-    overflow-x: hidden;
-    position: relative;
-}
-
-/* ========== CANVAS BACKGROUND ========== */
-#particleCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* ========== STARS BACKGROUND ========== */
-.stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-    animation: twinkle 3s infinite;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.2; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.3); }
-}
-
-/* ========== GLASS OVERLAY ========== */
-.glass-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 14, 39, 0.7);
-    backdrop-filter: blur(100px);
-    z-index: 2;
-    pointer-events: none;
-}
-
-/* ========== CONTAINER ========== */
-.container {
-    position: relative;
-    z-index: 10;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* ========== GLASS CARD ========== */
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 30px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.glass-card:hover {
-    border-color: rgba(0, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
-}
-
-/* ========== HEADER ========== */
-.header {
-    text-align: center;
-    padding: 40px 20px;
-    margin-bottom: 40px;
-}
-
-.logo-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.neon-circle {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, #00d4ff, #7b2cbf);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    animation: float 3s ease-in-out infinite;
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-}
-
-.neon-circle i {
-    font-size: 40px;
-    color: white;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-.glitch-text {
-    font-size: 48px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #00d4ff, #7b2cbf, #ff006e);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    position: relative;
-    display: inline-block;
-}
-
-.badge {
-    display: inline-block;
-    background: rgba(0, 212, 255, 0.2);
-    border: 1px solid #00d4ff;
-    border-radius: 50px;
-    padding: 5px 15px;
-    font-size: 12px;
-    margin-top: 15px;
-    margin-left: 15px;
-    position: relative;
-}
-
-.pulse {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #00ff88;
-    border-radius: 50%;
-    margin-right: 8px;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.2); }
-}
-
-.subtitle {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-
-/* ========== INPUT SECTION ========== */
-.section-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.section-header i {
-    font-size: 24px;
-    color: #00d4ff;
-}
-
-.section-header h3 {
-    font-size: 18px;
-    font-weight: 600;
-    flex: 1;
-}
-
-.word-counter {
-    background: rgba(0, 212, 255, 0.2);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    color: #00d4ff;
-}
-
-textarea {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 16px;
-    color: white;
-    font-size: 16px;
-    font-family: 'Inter', monospace;
-    resize: vertical;
-    transition: all 0.3s ease;
-}
-
-textarea:focus {
-    outline: none;
-    border-color: #00d4ff;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-}
-
-textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-}
-
-/* ========== STYLE SELECTOR ========== */
-.style-selector {
-    margin: 20px 0;
-}
-
-.style-selector label {
-    display: block;
-    margin-bottom: 12px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.style-buttons {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.style-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 40px;
-    padding: 10px 20px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-}
-
-.style-btn i {
-    font-size: 14px;
-}
-
-.style-btn:hover {
-    background: rgba(0, 212, 255, 0.2);
-    border-color: #00d4ff;
-    transform: translateY(-2px);
-}
-
-.style-btn.active {
-    background: linear-gradient(135deg, #00d4ff, #7b2cbf);
-    border-color: transparent;
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
-}
-
-/* ========== PROCESS BUTTON ========== */
-.process-btn {
-    width: 100%;
-    background: linear-gradient(135deg, #00d4ff, #7b2cbf);
-    border: none;
-    border-radius: 50px;
-    padding: 16px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.process-btn:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-}
-
-.btn-glow {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-}
-
-.process-btn:hover .btn-glow {
-    left: 100%;
-}
-
-/* ========== LOADING ========== */
-.loading-container {
-    display: none;
-    margin: 40px 0;
-    text-align: center;
-}
-
-.neural-loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.loader-circle {
-    width: 20px;
-    height: 20px;
-    background: #00d4ff;
-    border-radius: 50%;
-    display: inline-block;
-    margin: 0 5px;
-    animation: bounce 1.4s infinite ease-in-out both;
-}
-
-.loader-circle:nth-child(1) { animation-delay: -0.32s; }
-.loader-circle:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
-    40% { transform: scale(1); opacity: 1; }
-}
-
-.loader-text {
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-}
-
-/* ========== OUTPUT SECTION ========== */
-.output-section {
-    margin-top: 30px;
-    animation: slideUp 0.5s ease;
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.output-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.action-icon {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: white;
-}
-
-.action-icon:hover {
-    background: rgba(0, 212, 255, 0.2);
-    border-color: #00d4ff;
-    transform: translateY(-2px);
-}
-
-.output-content {
-    margin: 20px 0;
-}
-
-.original-text, .paraphrased-text {
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-    margin-bottom: 15px;
-}
-
-.label {
-    display: block;
-    font-size: 12px;
-    color: #00d4ff;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.original-text p, .paraphrased-text p {
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #00d4ff, #7b2cbf, transparent);
-    margin: 20px 0;
-}
-
-/* ========== STATS ========== */
-.stats-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.stat-card {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 16px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.stat-card i {
-    font-size: 24px;
-    color: #00d4ff;
-}
-
-.stat-label {
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.5);
-    display: block;
-}
-
-.stat-value {
-    font-size: 14px;
-    font-weight: 600;
-    display: block;
-}
-
-/* ========== FOOTER ========== */
-.footer {
-    text-align: center;
-    padding: 40px 20px 20px;
-    margin-top: 40px;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.4);
-}
-
-.dot {
-    color: #00d4ff;
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>AI Auto Clipper | MweheheXcode</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Particle Canvas Background -->
+    <canvas id="particleCanvas"></canvas>
     
-    .glass-card {
-        padding: 20px;
-    }
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
     
-    .glitch-text {
-        font-size: 32px;
-    }
-    
-    .style-buttons {
-        gap: 8px;
-    }
-    
-    .style-btn {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-    
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-}
+    <!-- Glass Morphism Overlay -->
+    <div class="glass-overlay"></div>
+
+    <div class="container">
+        <!-- Futuristic Header -->
+        <header class="header">
+            <div class="logo-container">
+                <div class="neon-circle">
+                    <i class="fas fa-scissors"></i>
+                </div>
+                <h1 class="glitch-text" data-text="AI Auto Clipper">AI Auto Clipper</h1>
+                <div class="badge">
+                    <span class="pulse"></span>
+                    Neural Clipper v2.0
+                </div>
+            </div>
+            <p class="subtitle">Potong & Ekstrak Momen Terbaik Secara Otomatis | Powered by MweheheXcode</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <div class="input-section glass-card">
+                <div class="section-header">
+                    <i class="fas fa-link"></i>
+                    <h3>Input Link Video/Media</h3>
+                    <span class="badge-api" id="apiStatus">● API Ready</span>
+                </div>
+                
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="videoUrl" 
+                        placeholder="Masukkan URL video (YouTube, TikTok, Instagram, Facebook, Twitter)..."
+                        class="futuristic-input"
+                    >
+                    <button class="paste-btn" id="pasteBtn">
+                        <i class="fas fa-paste"></i>
+                    </button>
+                </div>
+
+                <!-- Platform Suggestions -->
+                <div class="platform-suggestions">
+                    <span class="suggestion-label"><i class="fas fa-globe"></i> Support:</span>
+                    <div class="platform-icons">
+                        <i class="fab fa-youtube" title="YouTube"></i>
+                        <i class="fab fa-tiktok" title="TikTok"></i>
+                        <i class="fab fa-instagram" title="Instagram"></i>
+                        <i class="fab fa-facebook" title="Facebook"></i>
+                        <i class="fab fa-twitter" title="Twitter/X"></i>
+                    </div>
+                </div>
+
+                <!-- Clipping Options -->
+                <div class="clipping-options">
+                    <div class="option-group">
+                        <label><i class="fas fa-clock"></i> Durasi Clip (detik)</label>
+                        <div class="duration-selector">
+                            <button class="duration-btn" data-duration="15">15s</button>
+                            <button class="duration-btn active" data-duration="30">30s</button>
+                            <button class="duration-btn" data-duration="45">45s</button>
+                            <button class="duration-btn" data-duration="60">60s</button>
+                            <button class="duration-btn custom" data-duration="custom">
+                                <i class="fas fa-sliders-h"></i> Custom
+                            </button>
+                        </div>
+                        <div class="custom-duration" id="customDuration" style="display: none;">
+                            <input type="number" id="customDurationValue" placeholder="Durasi dalam detik" min="5" max="300">
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label><i class="fas fa-magic"></i> AI Detection Mode</label>
+                        <div class="ai-modes">
+                            <button class="ai-mode-btn active" data-mode="auto">
+                                <i class="fas fa-robot"></i> Auto (Best Moments)
+                            </button>
+                            <button class="ai-mode-btn" data-mode="highlight">
+                                <i class="fas fa-star"></i> Highlight Only
+                            </button>
+                            <button class="ai-mode-btn" data-mode="speech">
+                                <i class="fas fa-microphone"></i> Speech Detection
+                            </button>
+                            <button class="ai-mode-btn" data-mode="action">
+                                <i class="fas fa-running"></i> Action Scenes
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label><i class="fas fa-download"></i> Output Format</label>
+                        <div class="format-selector">
+                            <button class="format-btn active" data-format="mp4">
+                                <i class="fas fa-video"></i> MP4
+                            </button>
+                            <button class="format-btn" data-format="gif">
+                                <i class="fas fa-file-image"></i> GIF
+                            </button>
+                            <button class="format-btn" data-format="webm">
+                                <i class="fas fa-code"></i> WEBM
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Channel Button -->
+                <div class="whatsapp-section">
+                    <button class="whatsapp-btn" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Join WhatsApp Channel</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                    <div class="whatsapp-popup" id="whatsappPopup" style="display: none;">
+                        <div class="popup-content">
+                            <i class="fab fa-whatsapp"></i>
+                            <h4>Join Channel WhatsApp untuk mendapatkan web/tolls menarik lainnya</h4>
+                            <p>Dapatkan update terbaru tentang web lainnya!</p>
+                            <div class="popup-buttons">
+                                <button class="join-btn" id="confirmWhatsapp">Join Now</button>
+                                <button class="close-popup" id="closePopup">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="process-btn" id="processBtn">
+                    <span class="btn-text">Clip Now</span>
+                    <span class="btn-icon"><i class="fas fa-cut"></i></span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-container" id="loadingContainer">
+                <div class="neural-loader">
+                    <div class="loader-circle"></div>
+                    <div class="loader-circle"></div>
+                    <div class="loader-circle"></div>
+                    <div class="loader-text">
+                        <span id="loadingStep">Menganalisis video...</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="output-section glass-card" id="outputSection" style="display: none;">
+                <div class="section-header">
+                    <i class="fas fa-film"></i>
+                    <h3>Hasil Clipping</h3>
+                    <div class="output-actions">
+                        <button class="action-icon" id="downloadBtn" title="Download">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-icon" id="shareBtn" title="Share">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                        <button class="action-icon" id="previewBtn" title="Preview">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Video Preview -->
+                <div class="video-preview" id="videoPreview">
+                    <video id="clipVideo" controls style="width: 100%; border-radius: 16px;">
+                        <source id="videoSource" src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- Clip Info -->
+                <div class="clip-info">
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <span class="info-label">Duration</span>
+                                <span class="info-value" id="clipDuration">-</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <span class="info-label">AI Confidence</span>
+                                <span class="info-value" id="aiConfidence">-</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-database"></i>
+                            <div>
+                                <span class="info-label">File Size</span>
+                                <span class="info-value" id="fileSize">-</span>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <div>
+                                <span class="info-label">Processing Time</span>
+                                <span class="info-value" id="processTime">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Preview -->
+                <div class="timeline-preview">
+                    <div class="timeline-header">
+                        <i class="fas fa-chart-simple"></i>
+                        <span>AI Detection Timeline</span>
+                    </div>
+                    <div class="timeline-bar" id="timelineBar">
+                        <div class="timeline-marker" id="timelineMarker"></div>
+                    </div>
+                    <div class="timeline-labels">
+                        <span>Start</span>
+                        <span>Best Moments</span>
+                        <span>End</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div class="history-section glass-card" id="historySection">
+                <div class="section-header">
+                    <i class="fas fa-history"></i>
+                    <h3>Recent Clips</h3>
+                    <button class="clear-history" id="clearHistoryBtn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+                <div class="history-list" id="historyList">
+                    <div class="empty-history">
+                        <i class="fas fa-folder-open"></i>
+                        <p>Belum ada riwayat clipping</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span>© 2026 AI Auto Clipper Neural</span>
+                <span class="dot">•</span>
+                <span>JansenXcode</span>
+                <span class="dot">•</span>
+                <span><i class="fas fa-shield-alt"></i> Encrypted</span>
+                <span class="dot">•</span>
+                <span><i class="fas fa-bolt"></i> Real-time AI Processing</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
